@@ -1,0 +1,21 @@
+@media screen and (max-width: 768px) {
+    .login-top-right{
+        display: none;
+    }
+    .home-widget h2 {
+        font-size: 48px;
+    }
+    .home-widget h2 span {
+        font-size: 64px;
+    }
+    .slideout-menu{
+        overflow: auto;
+    }
+}
+
+/*
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
+*/

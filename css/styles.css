@@ -1,0 +1,516 @@
+/* https://gist.github.com/dmmdust/6a27c95ffc84fe003c555739d6414d3d
+   v1.0 | 20170712
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* ******** reset css end ********* */
+
+@font-face {
+    font-family: FuturaStd;
+    font-style: normal;
+    font-weight: normal;
+    src: url("../fonts/FuturaStd-Medium.otf") format("opentype");
+}
+@font-face {
+    font-family: FuturaCon;
+    font-style: normal;
+    font-weight: normal;
+    src: url("../fonts/Futura-Condensed-Medium.otf") format("opentype");
+}
+body{
+    font-family: "FuturaStd",sans-serif;
+    transition: background-color .5s;
+}
+
+.no-padding-left{
+    padding-left: 0;
+}
+
+.no-padding-right{
+    padding-right: 0;
+}
+
+.hide{
+    display: none;
+}
+.clear{
+    clear: both;
+}
+.pre-loader{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    transition: 0.5s;
+    z-index: 2;
+}
+
+.pre-loader figure{
+    bottom: 10%;
+    left: 0;
+    right: 0;
+    position: fixed;
+    text-align: center;
+    cursor: pointer;
+}
+.pre-loader figure p{
+    color: #ffffff;
+    text-transform: uppercase;
+    font-size: 18px;
+}
+
+.pre-loader figure p img{
+    width: 16px;
+}
+
+#preLoaderButton {
+    animation: bounce 1s infinite alternate;
+    -webkit-animation: bounce 1s infinite alternate;
+}
+@keyframes bounce {
+    from {
+        transform: translateY(0px);
+    }
+    to {
+        transform: translateY(-15px);
+    }
+}
+@-webkit-keyframes bounce {
+    from {
+        transform: translateY(0px);
+    }
+    to {
+        transform: translateY(-15px);
+    }
+}
+
+#preLoaderButton:hover {
+    -webkit-animation-play-state: paused;
+    -moz-animation-play-state: paused;
+    -o-animation-play-state: paused;
+    animation-play-state: paused;
+}
+
+/* ******* side navigation ******* */
+.menu-icon{
+    font-size: 20px;
+    cursor: pointer;
+    padding: 15px 0;
+    display: inline-block;
+}
+.sidenav {
+    padding-top: 68px;
+}
+
+.sidenav a {
+    padding: 6px 6px 6px 32px;
+    text-decoration: none;
+    font-size: 14px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+    text-transform: uppercase;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+#bitMain {
+    transition: margin-left .5s;
+    padding: 0 16px;
+}
+
+.sidenav .menu-title{
+    color: #ffffff;
+    padding: 5px 0 25px 32px;
+    display: inline-block;
+    font-size: 18px;
+}
+.sidenav ul li{
+    padding: 5px 0;
+}
+.sidenav ul li.current-menu-item a, .sidenav ul li.current_page_item a{
+    color: #ffffff;
+}
+.sidenav .sidenav-primary{
+    margin-top: 10px;
+}
+.sidenav .sidenav-secondary{
+    margin-top: 30px;
+}
+.sidenav .sidenav-main-menu{
+    margin-top: 30px;
+}
+.sidenav hr{
+    border-top: 1px #818181 solid;
+    width: 75%;
+}
+
+.sidenav .sidenav-login{
+    margin-top: 20px;
+}
+.sidenav .sidenav-login a{
+    color: #b3000f;
+    text-transform: uppercase;
+}
+
+.sidenav .sidenav-copyright{
+    margin-top: 15px;
+}
+.sidenav .sidenav-copyright p{
+    font-size: 12px;
+    color: #818181;
+    text-transform: uppercase;
+    padding: 0 32px;
+}
+.sidenav .sidenav-copyright a{
+    font-size: 12px;
+    color: #818181;
+    padding: 0 32px;
+    line-height: 2;
+}
+.sidenav .sidenav-social{
+    display: table;
+    width: 95%;
+    margin-top: 10px;
+}
+.sidenav .sidenav-social a{
+    display: table-cell;
+    padding: 10px;
+    text-align: center;
+    border: 1px #818181 solid;
+}
+
+.logo-main{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    text-align: center;
+    padding: 15px 0;
+    display: block;
+}
+.login-top-right{
+    text-align: right;
+    display: block;
+    padding: 15px 0;
+}
+
+/* ****** home page ***** */
+/*
+.home-widgets{
+    background-color: #f3f3f5;
+    width: 100%;
+    display: inline-block;
+}
+*/
+a.home-widget-wrap{
+    text-decoration: none;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    display: block;
+}
+a.home-widget-wrap:hover, a.home-widget-wrap:focus, a.home-widget-wrap:active{
+    text-decoration: none;
+}
+.home-widget{
+    background-color: #1b1b1f;
+    padding-top: 25%;
+    padding-right: 30px;
+    padding-bottom: 60px;
+    padding-left: 30px;
+}
+.home-widget h2{
+    color: #ffffff;
+    font-size: 56px;
+    text-transform: uppercase;
+    border-bottom: 2px #b3000f solid;
+    display: inline-block;
+}
+.home-widget h2 span{
+    display: block;
+    font-size: 70px;
+}
+.home-widget p{
+    color: #ffffff;
+    font-size: 14px;
+    text-transform: uppercase;
+    margin-top: 15px;
+    line-height: 1.5;
+}
+.home-widget p span{
+    display: block;
+}
+
+/* ************************************* */
+
+.slideout-menu {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 256px;
+    min-height: 100vh;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    z-index: 0;
+    display: none;
+    background-color: #1b1b1f;
+    overflow: hidden;
+}
+
+.slideout-menu-left {
+    left: 0;
+}
+
+.slideout-menu-right {
+    right: 0;
+}
+
+.slideout-panel {
+    position: relative;
+    z-index: 1;
+    will-change: transform;
+    background-color: #FFF; /* A background-color is required */
+    min-height: 100vh;
+}
+
+.slideout-open,
+.slideout-open body,
+.slideout-open .slideout-panel {
+    overflow: hidden;
+}
+
+.slideout-open .slideout-menu {
+    display: block;
+}
+
+
+/* ******* buy bitcoin template ******** */
+.buy-bitcoin-wrap{
+    text-decoration: none;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    display: block;
+    color: #ffffff;
+}
+.buy-bitcoin-wrap .buy-bitcoin-widget {
+    background-color: #1b1b1f;
+    padding: 30px;
+}
+.buy-bitcoin-wrap .buy-bitcoin-widget .buy-bitcoin-time{
+    font-weight: 100;
+    text-align: center;
+    font-size: 14px;
+}
+.buy-bitcoin-wrap .buy-bitcoin-widget .buy-bitcoin-time span.time, .buy-bitcoin-wrap .buy-bitcoin-widget .buy-bitcoin-time span.date{
+    text-transform: uppercase;
+}
+.buy-bitcoin-wrap .buy-bitcoin-widget .buy-bitcoin-time span.time i{
+    color: #a71717;
+}
+.buy-bitcoin-wrap .buy-bitcoin-widget .buy-bitcoin-time span.date{
+    color: #818181;
+    border-left: 1px #818181 solid;
+    margin-left: 15px;
+    padding-left: 15px;
+}
+.buy-bitcoin-wrap .buy-bitcoin-widget .buy-bitcoin-value{
+    font-family: "FuturaCon";
+    display: table;
+    margin: auto;
+    padding-top: 15%;
+    padding-bottom: 15%;
+}
+.buy-bitcoin-wrap .buy-bitcoin-widget .buy-bitcoin-value span{
+    display: table-cell;
+    vertical-align: middle;
+}
+.buy-bitcoin-wrap .buy-bitcoin-widget .buy-bitcoin-value span.currency{
+    color: #a71717;
+    font-size: 18px;
+}
+.buy-bitcoin-wrap .buy-bitcoin-widget .buy-bitcoin-value span.value{
+    color: #ffffff;
+    font-size: 74px;
+}
+.buy-bitcoin-wrap .buy-bitcoin-widget .buy-bitcoin-footer p{
+    text-align: center;
+    color: #818181;
+    text-transform: uppercase;
+    font-weight: 100;
+    font-size: 14px;
+    letter-spacing: 5px;
+}
+
+.buy-bitcoin-wrap .buy-bitcoin-form .buy-bitcoin-header p{
+    color: #1b1b1f;
+    text-transform: uppercase;
+    font-weight: 100;
+    font-size: 14px;
+    letter-spacing: 5px;
+    text-align: center;
+}
+.buy-bitcoin-wrap .buy-bitcoin-form .buy-bitcoin-btc{
+    border-bottom: 1px #e9e9e9 solid;
+    margin: auto;
+    width: 100%;
+    margin: 40px auto;
+}
+.buy-bitcoin-wrap .buy-bitcoin-form .buy-bitcoin-btc span.value{
+    font-family: "FuturaCon";
+    color: #bab9ba;
+    font-size: 52px;
+    text-align: center;
+    width: 80%;
+    display: inline-block;
+    padding-left: 15%;
+}
+.buy-bitcoin-wrap .buy-bitcoin-form .buy-bitcoin-btc span.currency {
+    font-family: "FuturaCon";
+    color: #bab9ba;
+    font-size: 24px;
+    text-align: left;
+}
+.buy-bitcoin-wrap .buy-bitcoin-form .buy-bitcoin-lkr{
+    border-bottom: 1px #e9e9e9 solid;
+    width: 100%;
+    margin: 40px auto;
+}
+.buy-bitcoin-wrap .buy-bitcoin-form .buy-bitcoin-lkr span.value{
+    text-align: center;
+}
+.buy-bitcoin-wrap .buy-bitcoin-form .buy-bitcoin-lkr span.value input{
+    font-family: "FuturaCon";
+    color: #1b1b1f;
+    font-size: 52px;
+    text-align: center;
+    width: 80%;
+    display: inline-block;
+    border: 0;
+    outline: none;
+    padding-left: 15%;
+}
+.buy-bitcoin-wrap .buy-bitcoin-form .buy-bitcoin-lkr span.currency {
+    font-family: "FuturaCon";
+    color: #bab9ba;
+    font-size: 24px;
+    text-align: left;
+}
+.buy-bitcoin-wrap .buy-bitcoin-form .buy-bitcoin-footer button{
+    background-color: #b3000f;
+    text-transform: uppercase;
+    font-weight: 100;
+    font-size: 14px;
+    letter-spacing: 5px;
+    text-align: center;
+    border: 0;
+    border-radius: 0;
+    padding: 25px;
+    display: inline-block;
+    margin-top: 12px;
+}
+.buy-bitcoin-wrap .buy-bitcoin-form .buy-bitcoin-footer button:hover{
+    color: #ffffff;
+}
+
+/* ******** footer ******** */
+.footer{
+    background-color: #1b1b1f;
+    text-align: center;
+    padding-bottom: 80px;
+}
+.footer-title h1{
+    font-size: 18px;
+    font-weight: normal;
+    text-transform: uppercase;
+    color: #818181;
+    padding-top: 80px;
+    padding-bottom: 40px;
+}
+
+.footer-address p, .footer-contact p{
+    color: #818181;
+    line-height: 1.5;
+}
+.footer-address p span{
+    display: block;
+}
+.footer-contact{
+    margin: 20px 0;
+}
+.footer-contact a, .footer-social a{
+    color: #818181;
+    text-decoration: none;
+}
+.footer-social{
+    margin-top: 40px;
+}
+.footer-social a{
+    border: 1px #818181 solid;
+    margin: 0 20px;
+    display: inline-block;
+}
+
+.footer-social a.social-fb{
+    padding: 15px 20px;
+}
+.footer-social a.social-in{
+    padding: 15px 16px;
+}
+.footer-social a.social-tw{
+    padding: 15px 17px;
+}
